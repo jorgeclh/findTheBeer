@@ -26,8 +26,8 @@ Game.prototype.reset = function() {
 
 Game.prototype.rotatePipe = function(id) {
   var coordinates = id.split('-')
-  this.grid.getPipe(coordinates[0], coordinates[1]).rotate('left')
-  $('#' + id).replaceWith(this.grid.getPipe(coordinates[0], coordinates[1]).draw(coordinates[0], coordinates[1]))
+  this.grid.getPipe(coordinates[1], coordinates[0]).rotate('left')
+  $('#' + id).replaceWith(this.grid.getPipe(coordinates[1], coordinates[0]).draw(coordinates[0], coordinates[1]))
   this.setListeners()
 }
 
