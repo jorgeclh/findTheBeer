@@ -4,16 +4,28 @@ function Pipe(type) {
 }
 
 //Method that rotates a pipe to the left
-Pipe.prototype.rotateLeft = function() {
-  if (!this.isLocked()) {
-    this.type = this.type.push(this.type.shift())
-  }
-}
+// Pipe.prototype.rotateLeft = function() {
+//   if (!this.isLocked()) {
+//     this.type = this.type.push(this.type.shift())
+//   }
+// }
+//
+// //Method that rotates a pipe to the right
+// Pipe.prototype.rotateRight = function() {
+//   if (!this.isLocked()) {
+//     this.type = this.type.unshift(this.type.pop())
+//   }
+// }
 
-//Method that rotates a pipe to the right
-Pipe.prototype.rotateRight = function() {
+Pipe.prototype.rotate = function(rotation) {
   if (!this.isLocked()) {
-    this.type = this.type.unshift(this.type.pop())
+    if (arguments[0] != undefined) {
+      if (arguments[0] == 'left') {
+        this.type.push(this.type.shift())
+      } else if (arguments[0] == 'right') {
+        this.type.unshift(this.type.pop())
+      }
+    }
   }
 }
 
@@ -61,5 +73,16 @@ Pipe.prototype.draw = function(x, y) {
   } else if (this.type.every(function(v, i) {return v === [1, 1, 1, 1][i]})) {
     pipeDiv.addClass('pipe cross')
   }
+  if (this.isLocked()) {
+    pipeDiv.addClass('blocked')
+  }
   return pipeDiv.html(this.type)
+}
+
+
+var pipeTypes = {
+  'END_LEFT': [0, 0, 0, 1],
+  'END_BOTTOM': [0, 0, 1, 0],
+  'END_RIGHT': [0, 1, 0, 0],
+  'END_TOP': [1, 0, 0, 0]
 }
