@@ -1,17 +1,30 @@
 
-#grid {
-  display: flex;
-  flex-direction: column;
+div {
+  &#grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      height: 50px;
+      width: 50px;
+      border: 1px solid black;
+      box-sizing: border-box;
+    }
+  }
 }
 
-#row {
-  display: flex;
-  flex-direction: row;
 
-  &> div {
-    height: 50px;
-    width: 50px;
-    border: 1px solid black;
-    box-sizing: border-box;
-  }
+
+.active {
+  background-color: blue;
 }

@@ -1,6 +1,7 @@
 function Pipe(type) {
   this.type = type
   this.locked = false
+  this.active = false
 }
 
 //Method that rotates a pipe to the left
@@ -39,9 +40,27 @@ Pipe.prototype.isLocked = function() {
   return this.locked
 }
 
+Pipe.prototype.activate = function() {
+  this.active = true
+}
+
+Pipe.prototype.deactivate = function() {
+  this.active = false
+}
+
+Pipe.prototype.isActive = function() {
+  return this.active
+}
+
 //Method that returns the inner html of a pipe
 Pipe.prototype.draw = function(x, y) {
   var pipeDiv = $('<div/>').attr('id', x + '-' + y)
+  // switch (pipeTypes[this.type]) {
+  //   case 'end-left':
+  //   console.log('yep')
+  // }
+
+
   if (this.type.every(function(v, i) {return v === [0, 0, 0, 1][i]})) {
     pipeDiv.addClass('pipe end-left')
   } else if (this.type.every(function(v, i) {return v === [0, 0, 1, 0][i]})) {
@@ -76,13 +95,16 @@ Pipe.prototype.draw = function(x, y) {
   if (this.isLocked()) {
     pipeDiv.addClass('blocked')
   }
+  if (this.isActive()) {
+    pipeDiv.addClass('active')
+  }
   return pipeDiv.html(this.type)
 }
 
 
-var pipeTypes = {
-  'END_LEFT': [0, 0, 0, 1],
-  'END_BOTTOM': [0, 0, 1, 0],
-  'END_RIGHT': [0, 1, 0, 0],
-  'END_TOP': [1, 0, 0, 0]
-}
+// var pipeTypes = {
+//   [0, 0, 0, 1]: 'end-left',
+//   [0, 0, 1, 0]: 'end-bottom',
+//   [0, 1, 0, 0]: 'end-right',
+//   [1, 0, 0, 0]: 'END_TOP'
+// }

@@ -4,22 +4,77 @@ function Grid () {
 
 //Method that returns the pipe contained at the grid coordinates given
 Grid.prototype.getPipe = function(x, y) {
-  return this.pipes[x][y]
+  if ((x >= 0 && x < this.pipes.length) && (y >= 0 && y < this.pipes[0].length)) {
+    return this.pipes[x][y]
+  } else {
+    return undefined
+  }
 }
 
 
 //Method that creates a board randomly
 Grid.prototype.createBoard = function() {
-  this.pipes = [[new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
+  this.pipes = [[new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 0, 1])]]
 }
 
-// isConnected
-//
-// getNeighbours
+//Function that return whether or not a pipe is connected to another one given their cordinates and relative position
+Grid.prototype.isConnected = function (x, y, position) {
+  var neighbours = this.getNeighbours(x, y)
+    if (neighbours[position] != undefined) {
+      switch (position) {
+        case 0:
+          return neighbours[position].type[2] == 1
+          break;
+        case 1:
+          return neighbours[position].type[3] == 1
+          break;
+        case 2:
+          return neighbours[position].type[0] == 1
+          break;
+        case 3:
+          return neighbours[position].type[1] == 1
+          break;
+      }
+    } else {
+      return false
+    }
+}
+
+
+//Function that returns the pipes thar are next to the coordinates given on clockwise order, if there is no pipe it returns undefined instead
+Grid.prototype.getNeighbours = function(x, y) {
+  var ret = []
+
+    if (y > 0) {
+        ret.push(this.getPipe(parseInt(y)-1, x))
+    } else {
+      ret.push(undefined)
+    }
+
+    if (x < this.pipes.length) {
+      ret.push(this.getPipe(y, parseInt(x)+1))
+    } else {
+      ret.push(undefined)
+    }
+
+    if (y < this.pipes[0].length) {
+      ret.push(this.getPipe(parseInt(y)+1, x))
+    } else {
+      ret.push(undefined)
+    }
+
+    if (x > 0) {
+      ret.push(this.getPipe(y, parseInt(x)-1))
+    } else {
+      ret.push(undefined)
+    }
+
+    return ret
+}
 
 
 Grid.prototype.draw = function() {
