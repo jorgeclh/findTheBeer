@@ -2,21 +2,9 @@ function Pipe(type) {
   this.type = type
   this.locked = false
   this.active = false
+  //this.source = false
 }
 
-//Method that rotates a pipe to the left
-// Pipe.prototype.rotateLeft = function() {
-//   if (!this.isLocked()) {
-//     this.type = this.type.push(this.type.shift())
-//   }
-// }
-//
-// //Method that rotates a pipe to the right
-// Pipe.prototype.rotateRight = function() {
-//   if (!this.isLocked()) {
-//     this.type = this.type.unshift(this.type.pop())
-//   }
-// }
 
 Pipe.prototype.rotate = function(rotation) {
   if (!this.isLocked()) {
@@ -42,15 +30,21 @@ Pipe.prototype.isLocked = function() {
 
 Pipe.prototype.activate = function() {
   this.active = true
+  //this.source = true
 }
 
 Pipe.prototype.deactivate = function() {
   this.active = false
+  //this.source = false
 }
 
 Pipe.prototype.isActive = function() {
   return this.active
 }
+
+// Pipe.prototype.isSource = function() {
+//   return this.source
+// }
 
 //Method that returns the inner html of a pipe
 Pipe.prototype.draw = function(x, y) {
@@ -98,7 +92,7 @@ Pipe.prototype.draw = function(x, y) {
   if (this.isActive()) {
     pipeDiv.addClass('active')
   }
-  return pipeDiv.html(this.type)
+  return pipeDiv.html(this.type + ' ' + this.active)
 }
 
 

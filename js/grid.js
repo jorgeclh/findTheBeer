@@ -14,8 +14,8 @@ Grid.prototype.getPipe = function(x, y) {
 
 //Method that creates a board randomly
 Grid.prototype.createBoard = function() {
-  this.pipes = [[new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
+  this.pipes = [[new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
+                [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 0, 1])]]
@@ -76,6 +76,37 @@ Grid.prototype.getNeighbours = function(x, y) {
     return ret
 }
 
+
+//Function that returns the cordinates of the neighbour indicated
+Grid.prototype.getRelativeCoordinate = function(x, y, direction) {
+  var coords = []
+    switch(direction) {
+      case 0:
+        coords.push(parseInt(x))
+        coords.push(parseInt(y) - 1)
+       break;
+       case 1:
+        coords.push(parseInt(x) + 1)
+        coords.push(parseInt(y))
+        break;
+      case 2:
+        coords.push(parseInt(x))
+        coords.push(parseInt(y) + 1)
+      break;
+      case 3:
+        coords.push(parseInt(x) - 1)
+        coords.push(parseInt(y))
+      break;
+    }
+
+    if (coords.every(function(e) { return parseInt(e) > -1 })) {
+      return coords
+    } else {
+      return undefined
+    }
+}
+
+// get connected neighbours/ get next pipes
 
 Grid.prototype.draw = function() {
   var gridDiv = $('<div/>').attr('id', 'grid')
