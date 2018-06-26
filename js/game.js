@@ -1,12 +1,41 @@
 function Game() {
   this.startPosition = [0, 0]
   this.endPosition = [4, 4]
+  this.time = 90
+  this.interval
 }
 
 //Function that initiates a new game when invoked
 Game.prototype.newGame = function() {
   this.reset()
   this.draw()
+  this.start(90)
+}
+
+//Function that starts the timer
+Game.prototype.start = function(seconds) {
+  this.time = seconds
+  var that = this
+  this.interval = window.setInterval(function () {
+    that.time--
+    that.checkWin()
+    if (that.time <= 0) {
+      that.gameOver()
+      clearInterval(that.interval)
+    }
+  }, 1000)
+}
+
+Game.prototype.gameOver = function() {
+  alert('buhhhh')
+}
+
+
+Game.prototype.checkWin = function() {
+  if (this.grid.getPipe(this.endPosition[1], this.endPosition[0]).isActive()) {
+    clearInterval(this.interval)
+    alert('We have a winner!!')
+  }
 }
 
 //Function that prints the boards every time that is invoked
@@ -24,13 +53,13 @@ Game.prototype.reset = function() {
   this.grid.createBoard()
   this.grid.getPipe(this.startPosition[0], this.startPosition[1]).lock()
   this.grid.getPipe(this.endPosition[0], this.endPosition[1]).lock()
+  //clearInterval(this.interval)
 }
 
 //Function that rotates a pipe
 Game.prototype.rotatePipe = function(id) {
   var coordinates = id.split('-')
   var pipe = this.grid.getPipe(coordinates[1], coordinates[0])
-  console.log('girando desde game: ' + id)
   pipe.rotate('left')
 
   this.draw()
@@ -57,14 +86,12 @@ Game.prototype.activatePipes = function(nextIteration) {
       this.grid.getPipe(thisIteration[i][1], thisIteration[i][0]).activate()
       //Comprobamos sus vecinos
       var neighbours = this.getNeighbours(thisIteration[i][0], thisIteration[i][1])
-      console.log('vecinos: ' + neighbours)
       //Comprobamos cuales de ellos estan conectados
       for (var x = 0, q = 2; x < neighbours.length; x++) {
         if (this.grid.getPipe(thisIteration[i][1], thisIteration[i][0]).type[x] == 1 && neighbours[x] != undefined && neighbours[x].type[q] == 1) {
           //Si lo estan los almacenamos para la siguiente iteracion SI NO ESTA YA ACTIVA
           var coord = this.grid.getRelativeCoordinate(thisIteration[i][0], thisIteration[i][1], x)
           if (coord != undefined && !this.grid.getPipe(coord[1], coord[0]).isActive()) {
-            console.log('coords: ' + coord + ' ' + this.grid.getPipe(coord[1], coord[0]).type)
             nextIteration.push(coord)
           }
         }
@@ -72,7 +99,6 @@ Game.prototype.activatePipes = function(nextIteration) {
         if (q > 3) q = 0
       }
     }
-    console.log(nextIteration)
     this.activatePipes(nextIteration)
   }
 }

@@ -7,7 +7,6 @@ function Pipe(type) {
 
 Pipe.prototype.rotate = function(rotation) {
   if (!this.isLocked()) {
-    console.log('girando desde pipe: ' + this.type)
     if (arguments[0] != undefined) {
       if (arguments[0] == 'left') {
         this.type.push(this.type.shift())
