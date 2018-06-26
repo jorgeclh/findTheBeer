@@ -1,5 +1,5 @@
 function Grid () {
-  this.pies = []
+  this.pipes = []
 }
 
 //Method that returns the pipe contained at the grid coordinates given

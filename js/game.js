@@ -13,7 +13,8 @@ Game.prototype.newGame = function() {
 Game.prototype.draw = function() {
   this.deactivatePipes()
   this.activatePipes([[this.startPosition[0],this.startPosition[1]]])
-  $('#board').replaceWith(this.grid.draw())
+  $('#board').empty()
+  $('#board').append(this.grid.draw())
   this.setListeners()
 }
 
@@ -22,8 +23,6 @@ Game.prototype.reset = function() {
   this.grid = new Grid()
   this.grid.createBoard()
   this.grid.getPipe(this.startPosition[0], this.startPosition[1]).lock()
-  this.grid.getPipe(this.startPosition[0], this.startPosition[1]).activate()
-  this.grid.getPipe(this.startPosition[0], this.startPosition[1]).source = true
   this.grid.getPipe(this.endPosition[0], this.endPosition[1]).lock()
 }
 
@@ -31,6 +30,7 @@ Game.prototype.reset = function() {
 Game.prototype.rotatePipe = function(id) {
   var coordinates = id.split('-')
   var pipe = this.grid.getPipe(coordinates[1], coordinates[0])
+  console.log('girando desde game: ' + id)
   pipe.rotate('left')
 
   this.draw()
@@ -72,10 +72,13 @@ Game.prototype.activatePipes = function(nextIteration) {
   }
 }
 
+//Function that deactivatres all the pipes before redrawing
 Game.prototype.deactivatePipes = function() {
-  for (var i = 0; i < this.grid.length; i++) {
-    for (var j = 0; j < this.grid[i].length; j++) {
+  console.log(this.grid.pipes)
+  for (var i = 0; i < this.grid.pipes.length; i++) {
+    for (var j = 0; j < this.grid.pipes[i].length; j++) {
       this.grid.getPipe(i, j).deactivate()
+      console.log(this.grid.getPipe(i, j).isActive())
     }
   }
 }

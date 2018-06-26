@@ -2,12 +2,12 @@ function Pipe(type) {
   this.type = type
   this.locked = false
   this.active = false
-  //this.source = false
 }
 
 
 Pipe.prototype.rotate = function(rotation) {
   if (!this.isLocked()) {
+    console.log('girando desde pipe: ' + this.type)
     if (arguments[0] != undefined) {
       if (arguments[0] == 'left') {
         this.type.push(this.type.shift())
@@ -30,21 +30,16 @@ Pipe.prototype.isLocked = function() {
 
 Pipe.prototype.activate = function() {
   this.active = true
-  //this.source = true
 }
 
 Pipe.prototype.deactivate = function() {
   this.active = false
-  //this.source = false
 }
 
 Pipe.prototype.isActive = function() {
   return this.active
 }
 
-// Pipe.prototype.isSource = function() {
-//   return this.source
-// }
 
 //Method that returns the inner html of a pipe
 Pipe.prototype.draw = function(x, y) {
