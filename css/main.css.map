@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAEE,QAAO,CACL,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,WAAW,CAAE,MAAM,CAGrB,OAAM,CACJ,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,GAAG,CACnB,eAAe,CAAE,aAAa,CAE9B,WAAI,CACF,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,GAAG,CACnB,eAAe,CAAE,YAAY,CAC7B,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,eAAe,CACvB,UAAU,CAAE,UAAU,CAO5B,OAAQ,CACN,gBAAgB,CAAE,IAAI",
-"sources": ["../scss/_base.scss"],
-"names": [],
-"file": "main.css"
-}
+{"version":3,"sourceRoot":"","sources":["../_variables.scss","../_base.scss","../scss/_header.scss","../scss/_section.scss"],"names":[],"mappings":"AAAQ,gECCN,mCAGF,KACE,SACA,UAGA,iBAWA,SACE,aACA,sBACA,mBAGF,QACE,aACA,mBACA,8BAEA,YACE,aACA,mBACA,6BACA,YACA,WACA,sBACA,sBAON,QACE,sBC9CF,OACE,iBFIwB,QEHxB,iBFIwB,4BEHxB,2BACA,2BACA,aACA,aACA,uBAEA,WACE,WAGF,WACE,oBCdJ,QACE,iBHSyB,QGRzB,iBHSyB,6BGRzB,2BACA,wBACA,2BACA,aACA,uBAEA,cACE","file":"main.css"}

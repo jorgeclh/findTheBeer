@@ -50,33 +50,33 @@ Pipe.prototype.draw = function(x, y) {
 
 
   if (this.type.every(function(v, i) {return v === [0, 0, 0, 1][i]})) {
-    pipeDiv.addClass('pipe end-left')
+    pipeDiv.addClass('pipe end left')
   } else if (this.type.every(function(v, i) {return v === [0, 0, 1, 0][i]})) {
-    pipeDiv.addClass('pipe end-bottom')
+    pipeDiv.addClass('pipe end bottom')
   } else if (this.type.every(function(v, i) {return v === [0, 1, 0, 0][i]})) {
-    pipeDiv.addClass('pipe end-right')
+    pipeDiv.addClass('pipe end right')
   } else if (this.type.every(function(v, i) {return v === [1, 0, 0, 0][i]})) {
-    pipeDiv.addClass('pipe end-top')
+    pipeDiv.addClass('pipe end top')
   } else if (this.type.every(function(v, i) {return v === [0, 1, 0, 1][i]})) {
-    pipeDiv.addClass('pipe line-horizontal')
+    pipeDiv.addClass('pipe line horizontal')
   } else if (this.type.every(function(v, i) {return v === [1, 0, 1, 0][i]})) {
-    pipeDiv.addClass('pipe line-vertical')
+    pipeDiv.addClass('pipe line vertical')
   } else if (this.type.every(function(v, i) {return v === [0, 0, 1, 1][i]})) {
-    pipeDiv.addClass('pipe curve-bottom-left')
+    pipeDiv.addClass('pipe curve bottom-left')
   } else if (this.type.every(function(v, i) {return v === [0, 1, 1, 0][i]})) {
-    pipeDiv.addClass('pipe curve-bottom-right')
+    pipeDiv.addClass('pipe curve bottom-right')
   } else if (this.type.every(function(v, i) {return v === [1, 1, 0, 0][i]})) {
-    pipeDiv.addClass('pipe curve-top-right')
+    pipeDiv.addClass('pipe curve top-right')
   } else if (this.type.every(function(v, i) {return v === [1, 0, 0, 1][i]})) {
-    pipeDiv.addClass('pipe curve-top-left')
+    pipeDiv.addClass('pipe curve top-left')
   } else if (this.type.every(function(v, i) {return v === [0, 1, 1, 1][i]})) {
-    pipeDiv.addClass('pipe t-bottom')
+    pipeDiv.addClass('pipe t bottom')
   } else if (this.type.every(function(v, i) {return v === [1, 1, 1, 0][i]})) {
-    pipeDiv.addClass('pipe t-right')
+    pipeDiv.addClass('pipe t right')
   } else if (this.type.every(function(v, i) {return v === [1, 1, 0, 1][i]})) {
-    pipeDiv.addClass('pipe t-top')
+    pipeDiv.addClass('pipe t top')
   } else if (this.type.every(function(v, i) {return v === [1, 0, 1, 1][i]})) {
-    pipeDiv.addClass('pipe t-left')
+    pipeDiv.addClass('pipe t left')
   } else if (this.type.every(function(v, i) {return v === [1, 1, 1, 1][i]})) {
     pipeDiv.addClass('pipe cross')
   }

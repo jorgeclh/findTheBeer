@@ -1,0 +1,17 @@
+header {
+  background-color: $header-background-color;
+  background-image: $header-background-image;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+
+  div {
+    width: 60vw;
+  }
+
+  img {
+    margin: 0.5em 0 0 1em;
+  }
+}

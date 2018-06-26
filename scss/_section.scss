@@ -1,0 +1,13 @@
+section {
+  background-color: $section-background-color;
+  background-image: $section-background-image;
+  background-repeat: repeat-x;
+  background-position: top;
+  height: calc(100vh - 130px);
+  display: flex;
+  justify-content: center;
+
+  &>div {
+    width: 60vw;
+  }
+}
