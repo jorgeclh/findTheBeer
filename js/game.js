@@ -57,28 +57,31 @@ Game.prototype.activatePipes = function(nextIteration) {
       this.grid.getPipe(thisIteration[i][1], thisIteration[i][0]).activate()
       //Comprobamos sus vecinos
       var neighbours = this.getNeighbours(thisIteration[i][0], thisIteration[i][1])
+      console.log('vecinos: ' + neighbours)
       //Comprobamos cuales de ellos estan conectados
-      for (var x = 0; x < neighbours.length; x++) {
-        if (this.grid.isConnected(thisIteration[i][0], thisIteration[i][1], x)) {
+      for (var x = 0, q = 2; x < neighbours.length; x++) {
+        if (this.grid.getPipe(thisIteration[i][1], thisIteration[i][0]).type[x] == 1 && neighbours[x] != undefined && neighbours[x].type[q] == 1) {
           //Si lo estan los almacenamos para la siguiente iteracion SI NO ESTA YA ACTIVA
           var coord = this.grid.getRelativeCoordinate(thisIteration[i][0], thisIteration[i][1], x)
           if (coord != undefined && !this.grid.getPipe(coord[1], coord[0]).isActive()) {
+            console.log('coords: ' + coord + ' ' + this.grid.getPipe(coord[1], coord[0]).type)
             nextIteration.push(coord)
           }
         }
+        q++
+        if (q > 3) q = 0
       }
     }
+    console.log(nextIteration)
     this.activatePipes(nextIteration)
   }
 }
 
 //Function that deactivatres all the pipes before redrawing
 Game.prototype.deactivatePipes = function() {
-  console.log(this.grid.pipes)
   for (var i = 0; i < this.grid.pipes.length; i++) {
     for (var j = 0; j < this.grid.pipes[i].length; j++) {
       this.grid.getPipe(i, j).deactivate()
-      console.log(this.grid.getPipe(i, j).isActive())
     }
   }
 }
