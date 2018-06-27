@@ -4,13 +4,14 @@ function Game() {
   this.totalTime = 60
   this.time = 60
   this.interval
+  this.openPath = false
 }
 
 //Function that initiates a new game when invoked
 Game.prototype.newGame = function() {
   this.reset()
   this.draw()
-  this.start(60)
+  this.start(90)
 }
 
 //Function that starts the timer
@@ -38,7 +39,8 @@ Game.prototype.gameOver = function() {
 
 
 Game.prototype.checkWin = function() {
-  if (this.grid.getPipe(this.endPosition[0], this.endPosition[1]).isActive()) {
+  this.checkOpenPath()
+  if (this.grid.getPipe(this.endPosition[0], this.endPosition[1]).isActive() && !this.openPath) {
     clearInterval(this.interval)
     this.lockPipes()
     this.drawCountdown('win')
@@ -47,7 +49,19 @@ Game.prototype.checkWin = function() {
 
 //Function that checks if there is any open path before reaching the end pipe
 Game.prototype.checkOpenPath = function() {
-
+  this.openPath = false
+  for (var i = 0; i < this.grid.pipes.length; i++) {
+    for (var j = 0; j < this.grid.pipes[i].length; j++) {
+      //if (!this.openPath && this.grid.getPipe(i, j).isActive()) {
+        for (var x = 0; x < this.grid.getPipe(i, j).type.length; x++) {
+          var neighbours = this.grid.getNeighbours(i, j)
+          if (neighbours[x] != undefined && this.grid.getPipe(i, j).type[x] == 1 && !this.grid.isConnected(j, i, x)) {
+            this.openPath = true
+          }
+        }
+      //}
+    }
+  }
 }
 
 //Function that prints the boards every time that is invoked

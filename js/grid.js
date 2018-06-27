@@ -22,7 +22,7 @@ Grid.prototype.createBoard = function() {
                 [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1])]]
 }
 
-//Function that return whether or not a pipe is connected to another one given their cordinates and relative position
+//Function that returns whether or not a pipe is connected to another one given their cordinates and relative position
 Grid.prototype.isConnected = function (x, y, position) {
   var neighbours = this.getNeighbours(x, y)
     if (neighbours[position] != undefined) {
