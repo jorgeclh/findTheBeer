@@ -1,6 +1,7 @@
 function Game() {
   this.startPosition = [0, 0]
   this.endPosition = [4, 4]
+  this.totalTime = 60
   this.time = 60
   this.interval
 }
@@ -9,17 +10,19 @@ function Game() {
 Game.prototype.newGame = function() {
   this.reset()
   this.draw()
-  this.start(90)
+  this.start(10)
 }
 
 //Function that starts the timer
 Game.prototype.start = function(seconds) {
-  this.time = seconds
+  this.totalTime = seconds
+  this.drawCountdown()
+  this.time = this.totalTime
   var that = this
   this.interval = window.setInterval(function () {
     that.time--
-    that.checkWin()
     that.drawCountdown()
+    that.checkWin()
     if (that.time <= 0) {
       that.gameOver()
       clearInterval(that.interval)
@@ -28,7 +31,9 @@ Game.prototype.start = function(seconds) {
 }
 
 Game.prototype.gameOver = function() {
-  alert('buhhhh')
+  clearInterval(this.interval)
+  this.lockPipes()
+  this.drawCountdown('lose')
 }
 
 
@@ -36,7 +41,7 @@ Game.prototype.checkWin = function() {
   if (this.grid.getPipe(this.endPosition[1], this.endPosition[0]).isActive()) {
     clearInterval(this.interval)
     this.lockPipes()
-    alert('We have a winner!!')
+    this.drawCountdown('win')
   }
 }
 
@@ -51,6 +56,7 @@ Game.prototype.draw = function() {
 
 //Function that resets the state of the game
 Game.prototype.reset = function() {
+  console.log('hola')
   this.grid = new Grid()
   this.grid.createBoard()
   this.grid.getPipe(this.startPosition[0], this.startPosition[1]).lock()
@@ -60,8 +66,17 @@ Game.prototype.reset = function() {
   clearInterval(this.interval)
 }
 
-Game.prototype.drawCountdown = function() {
-
+Game.prototype.drawCountdown = function(state) {
+  $('#control').empty()
+  var controlDiv
+  if (state == undefined) {
+    controlDiv = $('<div/>').addClass('countdown').html('Time left: ' + this.time + ' seconds')
+  } else if (state.localeCompare('win') == 0) {
+    controlDiv = $('<div/>').addClass('win').html('Winner winner, chicken dinner!')
+  } else if (state.localeCompare('lose') == 0) {
+    controlDiv = $('<div/>').addClass('lose').html('You spoiled the beer!')
+  }
+  $('#control').append(controlDiv)
 }
 
 //Function that rotates a pipe
