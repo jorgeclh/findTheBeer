@@ -1,6 +1,6 @@
 function Game() {
   this.startPosition = [0, 0]
-  this.endPosition = [4, 4]
+  this.endPosition = [5, 9]
   this.totalTime = 60
   this.time = 60
   this.interval
@@ -10,7 +10,7 @@ function Game() {
 Game.prototype.newGame = function() {
   this.reset()
   this.draw()
-  this.start(10)
+  this.start(60)
 }
 
 //Function that starts the timer
@@ -38,11 +38,16 @@ Game.prototype.gameOver = function() {
 
 
 Game.prototype.checkWin = function() {
-  if (this.grid.getPipe(this.endPosition[1], this.endPosition[0]).isActive()) {
+  if (this.grid.getPipe(this.endPosition[0], this.endPosition[1]).isActive()) {
     clearInterval(this.interval)
     this.lockPipes()
     this.drawCountdown('win')
   }
+}
+
+//Function that checks if there is any open path before reaching the end pipe
+Game.prototype.checkOpenPath = function() {
+
 }
 
 //Function that prints the boards every time that is invoked
@@ -56,7 +61,6 @@ Game.prototype.draw = function() {
 
 //Function that resets the state of the game
 Game.prototype.reset = function() {
-  console.log('hola')
   this.grid = new Grid()
   this.grid.createBoard()
   this.grid.getPipe(this.startPosition[0], this.startPosition[1]).lock()

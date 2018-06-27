@@ -14,11 +14,12 @@ Grid.prototype.getPipe = function(x, y) {
 
 //Method that creates a board randomly
 Grid.prototype.createBoard = function() {
-  this.pipes = [[new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 0, 1])]]
+  this.pipes = [[new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([1, 0, 0, 0]), new Pipe([1, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 1, 1])],
+                [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 1])],
+                [new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1])],
+                [new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 0, 1, 1])],
+                [new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 0, 0, 1])],
+                [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1])]]
 }
 
 //Function that return whether or not a pipe is connected to another one given their cordinates and relative position
@@ -55,13 +56,13 @@ Grid.prototype.getNeighbours = function(x, y) {
       ret.push(undefined)
     }
 
-    if (x < this.pipes.length) {
+    if (x < this.pipes[0].length) {
       ret.push(this.getPipe(y, parseInt(x)+1))
     } else {
       ret.push(undefined)
     }
 
-    if (y < this.pipes[0].length) {
+    if (y < this.pipes.length) {
       ret.push(this.getPipe(parseInt(y)+1, x))
     } else {
       ret.push(undefined)
