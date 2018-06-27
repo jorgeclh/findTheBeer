@@ -2,6 +2,8 @@ function Pipe(type) {
   this.type = type
   this.locked = false
   this.active = false
+  this.origin = false
+  this.goal = false
 }
 
 
@@ -85,6 +87,12 @@ Pipe.prototype.draw = function(x, y) {
   }
   if (this.isActive()) {
     pipeDiv.addClass('active')
+  }
+  if (this.origin) {
+    pipeDiv.addClass('origin')
+  }
+  if (this.goal) {
+    pipeDiv.addClass('goal')
   }
   return pipeDiv
 }

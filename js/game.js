@@ -54,7 +54,9 @@ Game.prototype.reset = function() {
   this.grid = new Grid()
   this.grid.createBoard()
   this.grid.getPipe(this.startPosition[0], this.startPosition[1]).lock()
+  this.grid.getPipe(this.startPosition[0], this.startPosition[1]).origin = true
   this.grid.getPipe(this.endPosition[0], this.endPosition[1]).lock()
+  this.grid.getPipe(this.endPosition[0], this.endPosition[1]).goal = true
   clearInterval(this.interval)
 }
 

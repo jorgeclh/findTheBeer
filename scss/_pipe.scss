@@ -4,9 +4,12 @@
   justify-content: space-around;
   height: 100px;
   width: 100px;
-  border: 1px solid black;
   box-sizing: border-box;
   background-color: #CCC;
+
+  &:hover {
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+  }
 
   &.cross {
     background-image: $pipe-cross-background-image;
@@ -81,12 +84,12 @@
     }
   }
 
-  &.beggining {
-    background-image: $pipe-beggining-background-image;
+  &.origin {
+    background-image: $pipe-origin-background-image !important;
   }
 
   &.goal {
-    background-image: $pipe-goal-background-image;
+    background-image: $pipe-goal-background-image !important;
   }
 
 
