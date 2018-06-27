@@ -12,11 +12,6 @@ body {
 
 
 
-
-
-
-
-
 div {
   &#grid {
     display: flex;
@@ -28,21 +23,5 @@ div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      height: 40px;
-      width: 40px;
-      border: 1px solid black;
-      box-sizing: border-box;
-    }
   }
-}
-
-
-
-.active {
-  background-color: blue;
 }

@@ -1,7 +1,7 @@
 function Game() {
   this.startPosition = [0, 0]
   this.endPosition = [4, 4]
-  this.time = 90
+  this.time = 60
   this.interval
 }
 
@@ -19,6 +19,7 @@ Game.prototype.start = function(seconds) {
   this.interval = window.setInterval(function () {
     that.time--
     that.checkWin()
+    that.drawCountdown()
     if (that.time <= 0) {
       that.gameOver()
       clearInterval(that.interval)
@@ -34,6 +35,7 @@ Game.prototype.gameOver = function() {
 Game.prototype.checkWin = function() {
   if (this.grid.getPipe(this.endPosition[1], this.endPosition[0]).isActive()) {
     clearInterval(this.interval)
+    this.lockPipes()
     alert('We have a winner!!')
   }
 }
@@ -53,7 +55,11 @@ Game.prototype.reset = function() {
   this.grid.createBoard()
   this.grid.getPipe(this.startPosition[0], this.startPosition[1]).lock()
   this.grid.getPipe(this.endPosition[0], this.endPosition[1]).lock()
-  //clearInterval(this.interval)
+  clearInterval(this.interval)
+}
+
+Game.prototype.drawCountdown = function() {
+
 }
 
 //Function that rotates a pipe
@@ -61,7 +67,6 @@ Game.prototype.rotatePipe = function(id) {
   var coordinates = id.split('-')
   var pipe = this.grid.getPipe(coordinates[1], coordinates[0])
   pipe.rotate('left')
-
   this.draw()
 }
 
@@ -108,6 +113,15 @@ Game.prototype.deactivatePipes = function() {
   for (var i = 0; i < this.grid.pipes.length; i++) {
     for (var j = 0; j < this.grid.pipes[i].length; j++) {
       this.grid.getPipe(i, j).deactivate()
+    }
+  }
+}
+
+
+Game.prototype.lockPipes = function() {
+  for (var i = 0; i < this.grid.pipes.length; i++) {
+    for (var j = 0; j < this.grid.pipes[i].length; j++) {
+      this.grid.getPipe(i, j).lock()
     }
   }
 }

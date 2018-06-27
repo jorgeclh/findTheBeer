@@ -1,0 +1,96 @@
+.pipe {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background-color: #CCC;
+
+  &.cross {
+    background-image: $pipe-cross-background-image;
+  }
+
+  &.line {
+    &.vertical {
+      background-image: $pipe-line-vertical-background-image;
+    }
+
+    &.horizontal {
+      background-image: $pipe-line-horizontal-background-image;
+    }
+  }
+
+  &.t {
+    &.top {
+      background-image: $pipe-t-top-background-image;
+    }
+
+    &.right {
+      background-image: $pipe-t-right-background-image;
+    }
+
+    &.bottom {
+      background-image: $pipe-t-bottom-background-image;
+    }
+
+    &.left {
+      background-image: $pipe-t-left-background-image;
+    }
+
+  }
+
+  &.curve {
+    &.top {
+      &.left {
+        background-image: $pipe-curve-top-left-background-image;
+      }
+
+      &.right {
+        background-image: $pipe-curve-top-right-background-image;
+      }
+    }
+
+    &.bottom {
+      &.left {
+        background-image: $pipe-curve-bottom-left-background-image;
+      }
+
+      &.right {
+        background-image: $pipe-curve-bottom-right-background-image;
+      }
+    }
+  }
+
+  &.end {
+    &.top {
+      background-image: $pipe-end-top-background-image;
+    }
+
+    &.right {
+      background-image: $pipe-end-right-background-image;
+    }
+
+    &.bottom {
+      background-image: $pipe-end-bottom-background-image;
+    }
+
+    &.left {
+      background-image: $pipe-end-left-background-image;
+    }
+  }
+
+  &.beggining {
+    background-image: $pipe-beggining-background-image;
+  }
+
+  &.goal {
+    background-image: $pipe-goal-background-image;
+  }
+
+
+  &.active {
+    background-color: orange;
+  }
+}

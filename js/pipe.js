@@ -62,13 +62,13 @@ Pipe.prototype.draw = function(x, y) {
   } else if (this.type.every(function(v, i) {return v === [1, 0, 1, 0][i]})) {
     pipeDiv.addClass('pipe line vertical')
   } else if (this.type.every(function(v, i) {return v === [0, 0, 1, 1][i]})) {
-    pipeDiv.addClass('pipe curve bottom-left')
+    pipeDiv.addClass('pipe curve bottom left')
   } else if (this.type.every(function(v, i) {return v === [0, 1, 1, 0][i]})) {
-    pipeDiv.addClass('pipe curve bottom-right')
+    pipeDiv.addClass('pipe curve bottom right')
   } else if (this.type.every(function(v, i) {return v === [1, 1, 0, 0][i]})) {
-    pipeDiv.addClass('pipe curve top-right')
+    pipeDiv.addClass('pipe curve top right')
   } else if (this.type.every(function(v, i) {return v === [1, 0, 0, 1][i]})) {
-    pipeDiv.addClass('pipe curve top-left')
+    pipeDiv.addClass('pipe curve top left')
   } else if (this.type.every(function(v, i) {return v === [0, 1, 1, 1][i]})) {
     pipeDiv.addClass('pipe t bottom')
   } else if (this.type.every(function(v, i) {return v === [1, 1, 1, 0][i]})) {
@@ -86,7 +86,7 @@ Pipe.prototype.draw = function(x, y) {
   if (this.isActive()) {
     pipeDiv.addClass('active')
   }
-  return pipeDiv.html(this.type + ' ' + this.active)
+  return pipeDiv
 }
 
 
