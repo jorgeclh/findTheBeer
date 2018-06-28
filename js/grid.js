@@ -14,12 +14,42 @@ Grid.prototype.getPipe = function(x, y) {
 
 //Method that creates a board randomly
 Grid.prototype.createBoard = function() {
-  this.pipes = [[new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([1, 0, 0, 0]), new Pipe([1, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 1, 1])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 1])],
-                [new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1])],
-                [new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 0, 0])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 0, 0, 1])],
-                [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1])]]
+  var map = Math.floor(Math.random() * 5)
+  var maps = [[[new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([1, 0, 0, 0]), new Pipe([1, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 1])],
+               [new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1])],
+               [new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 0, 0])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 0, 0, 1])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1])]],
+
+              [[new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 1, 0]), new Pipe([0, 0, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([0, 1, 0, 0]), new Pipe([1, 0, 1, 0]), new Pipe([0, 0, 0, 1]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 0, 0, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 0, 1])],
+               [new Pipe([0, 1, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 1, 0]), new Pipe([0, 0, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 1, 0, 0])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([1, 0, 1, 0]), new Pipe([0, 0, 0, 1])],
+               [new Pipe([0, 0, 1, 0]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1])]],
+
+              [[new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 0, 0, 0]), new Pipe([1, 1, 0, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 0, 0]), new Pipe([0, 0, 0, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 1])],
+               [new Pipe([0, 0, 0, 1]), new Pipe([1, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 1, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 1, 1]), new Pipe([1, 0, 1, 0]), new Pipe([0, 1, 0, 1])],
+               [new Pipe([0, 1, 0, 0]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 0, 1]), new Pipe([1, 1, 1, 0]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 0])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 0, 1]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 0, 0, 1]), new Pipe([0, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 0, 1])]],
+
+              [[new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 0, 1]), new Pipe([0, 1, 1, 1]), new Pipe([1, 0, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 1, 1, 1]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 0, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0])],
+               [new Pipe([0, 1, 0, 0]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 0]), new Pipe([1, 1, 0, 1]), new Pipe([1, 1, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 0, 0])],
+               [new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 0]), new Pipe([0, 1, 0, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 0]), new Pipe([1, 1, 0, 0]), new Pipe([1, 0, 0, 1])],
+               [new Pipe([0, 0, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1])]],
+
+              [[new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 0, 0]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 0, 1]), new Pipe([1, 0, 0, 0]), new Pipe([0, 1, 1, 1]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([0, 1, 0, 0]), new Pipe([0, 1, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 1, 0, 1]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 1, 1, 0])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 0, 1]), new Pipe([0, 1, 0, 0]), new Pipe([0, 0, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 0, 1, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 0, 1, 1])],
+               [new Pipe([1, 0, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([1, 1, 1, 1]), new Pipe([1, 1, 1, 0]), new Pipe([1, 1, 0, 1]), new Pipe([0, 1, 1, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 0]), new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 0, 1])],
+               [new Pipe([0, 1, 1, 0]), new Pipe([1, 1, 1, 0]), new Pipe([1, 1, 0, 0]), new Pipe([0, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([1, 0, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([1, 1, 1, 1]), new Pipe([0, 0, 1, 1]), new Pipe([0, 0, 0, 1])],
+               [new Pipe([0, 1, 0, 0]), new Pipe([1, 1, 0, 1]), new Pipe([1, 0, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 1, 0, 0]), new Pipe([0, 1, 1, 0]), new Pipe([0, 0, 1, 1]), new Pipe([1, 0, 1, 1]), new Pipe([0, 1, 0, 1]), new Pipe([0, 1, 0, 1])]]]
+  this.pipes = maps[map]
 }
 
 //Function that returns whether or not a pipe is connected to another one given their cordinates and relative position
