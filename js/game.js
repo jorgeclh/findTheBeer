@@ -6,6 +6,7 @@ function Game() {
   this.interval
   this.openPath = false
   this.cheat = false
+  this.bgMusic = new Audio('sounds/backgroundSong.mp3')
 }
 
 //Function that initiates a new game when invoked
@@ -17,6 +18,7 @@ Game.prototype.newGame = function() {
 
 //Function that starts the timer
 Game.prototype.start = function(seconds) {
+  this.bgMusic.play()
   this.totalTime = seconds
   this.drawCountdown()
   this.time = this.totalTime
@@ -36,6 +38,8 @@ Game.prototype.gameOver = function() {
   clearInterval(this.interval)
   this.lockPipes()
   this.drawCountdown('lose')
+  this.bgMusic.pause()
+  this.loseSound()
 }
 
 
@@ -44,6 +48,8 @@ Game.prototype.checkWin = function() {
   if (this.grid.getPipe(this.endPosition[0], this.endPosition[1]).isActive() && !this.openPath) {
     clearInterval(this.interval)
     this.lockPipes()
+    this.bgMusic.pause()
+    this.winSound()
     this.drawCountdown('win')
   }
 }
@@ -102,30 +108,24 @@ Game.prototype.rotatePipe = function(id) {
   var coordinates = id.split('-')
   var pipe = this.grid.getPipe(coordinates[1], coordinates[0])
   pipe.rotate('left')
+  this.rotateSound()
   this.draw()
 }
 
-//Function that returns the neighbours given coordinates
-Game.prototype.getNeighbours = function(x, y) {
-  return this.grid.getNeighbours(x, y)
-}
 
-//function that checks the conexion between pipes in the grid
-Game.prototype.checkConnection = function(x, y, direction) {
-  return this.grid.isConnected(x, y, direction)
-}
-
-
-//Function that activate al pipes reached
+//Function that activate all pipes reached
 Game.prototype.activatePipes = function(nextIteration) {
+  //Al ser recursiva, puede darse el caso de que el parámetro llegue vacio, momento en el que debe detenerse la ejecución
   if (nextIteration != undefined && nextIteration.length > 0) {
+    //Obtenemos la posición a evaluar dentro del array de posiciones
     var thisIteration = nextIteration.slice()
+    //Vaciamos la variable para poder rellenarla en esta ejecución y enviarla como parámetro en la siguiente
     nextIteration = []
     for (var i = 0; i < thisIteration.length; i++) {
       //Como hemos llegado hasta ella, la activamos
       this.grid.getPipe(thisIteration[i][1], thisIteration[i][0]).activate()
       //Comprobamos sus vecinos
-      var neighbours = this.getNeighbours(thisIteration[i][0], thisIteration[i][1])
+      var neighbours = this.grid.getNeighbours(thisIteration[i][0], thisIteration[i][1])
       //Comprobamos cuales de ellos estan conectados
       for (var x = 0, q = 2; x < neighbours.length; x++) {
         if (this.grid.getPipe(thisIteration[i][1], thisIteration[i][0]).type[x] == 1 && neighbours[x] != undefined && neighbours[x].type[q] == 1) {
@@ -135,13 +135,16 @@ Game.prototype.activatePipes = function(nextIteration) {
             nextIteration.push(coord)
           }
         }
+        //Al haber un desplazamiento de 2 entre un elemento y otro, usamos este contador auxiliar
         q++
         if (q > 3) q = 0
       }
     }
+    //Volvemos a llamar a la función con las posiciones que hemos almacenado
     this.activatePipes(nextIteration)
   }
 }
+
 
 //Function that deactivatres all the pipes before redrawing
 Game.prototype.deactivatePipes = function() {
@@ -153,6 +156,7 @@ Game.prototype.deactivatePipes = function() {
 }
 
 
+//Function that locks the movement of the pipes when user wins or loses
 Game.prototype.lockPipes = function() {
   for (var i = 0; i < this.grid.pipes.length; i++) {
     for (var j = 0; j < this.grid.pipes[i].length; j++) {
@@ -177,4 +181,28 @@ Game.prototype.setListeners = function() {
 
 Game.prototype.cheat = function() {
 
+}
+
+
+//Sounds
+
+//Function that plays the rotate sound
+Game.prototype.rotateSound = function() {
+  var rotateAudio = new Audio('sounds/rotate.mp3')
+  rotateAudio.play()
+}
+
+//Function that plays the win sound
+Game.prototype.winSound = function() {
+  var winAudio1 = new Audio ('sounds/winFanfare.mp3')
+  var winAudio2 = new Audio('sounds/pouringBeer.mp3')
+  winAudio1.play()
+  setTimeout(function() {
+    winAudio2.play()
+  }, 1500)  
+}
+
+Game.prototype.loseSound = function() {
+  var loseSound = new Audio('sounds/loseSound.mp3')
+  loseSound.play()
 }
