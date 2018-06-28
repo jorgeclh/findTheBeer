@@ -5,13 +5,14 @@ function Game() {
   this.time = 60
   this.interval
   this.openPath = false
+  this.cheat = false
 }
 
 //Function that initiates a new game when invoked
 Game.prototype.newGame = function() {
   this.reset()
   this.draw()
-  this.start(90)
+  this.start(60)
 }
 
 //Function that starts the timer
@@ -52,7 +53,7 @@ Game.prototype.checkOpenPath = function() {
   this.openPath = false
   for (var i = 0; i < this.grid.pipes.length; i++) {
     for (var j = 0; j < this.grid.pipes[i].length; j++) {
-      //if (!this.openPath && this.grid.getPipe(i, j).isActive()) {
+      //if (!this.openPath /*&& this.grid.getPipe(i, j).isActive()*/) {
         for (var x = 0; x < this.grid.getPipe(i, j).type.length; x++) {
           var neighbours = this.grid.getNeighbours(i, j)
           if (neighbours[x] != undefined && this.grid.getPipe(i, j).type[x] == 1 && !this.grid.isConnected(j, i, x)) {
@@ -172,4 +173,9 @@ Game.prototype.setListeners = function() {
   for (var i = 0; i < pipes.length; i++) {
     pipes[i].onclick = function () {that.rotatePipe($(this).attr('id'))}
   }
+}
+
+
+Game.prototype.cheat = function() {
+
 }
