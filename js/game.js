@@ -53,14 +53,13 @@ Game.prototype.checkOpenPath = function() {
   this.openPath = false
   for (var i = 0; i < this.grid.pipes.length; i++) {
     for (var j = 0; j < this.grid.pipes[i].length; j++) {
-      //if (!this.openPath /*&& this.grid.getPipe(i, j).isActive()*/) {
+      if (!this.openPath && this.grid.getPipe(i, j).isActive()) {
         for (var x = 0; x < this.grid.getPipe(i, j).type.length; x++) {
-          var neighbours = this.grid.getNeighbours(i, j)
-          if (neighbours[x] != undefined && this.grid.getPipe(i, j).type[x] == 1 && !this.grid.isConnected(j, i, x)) {
+          if (this.grid.getPipe(i, j).type[x] == 1 && !this.grid.isConnected(j, i, x)) {
             this.openPath = true
           }
         }
-      //}
+      }
     }
   }
 }
