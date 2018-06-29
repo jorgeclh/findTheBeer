@@ -1,8 +1,8 @@
 function Game() {
   this.startPosition = [0, 0]
   this.endPosition = [5, 9]
-  this.totalTime = 60
-  this.time = 60
+  this.totalTime = 90
+  this.time = 90
   this.interval
   this.openPath = false
   this.cheat = false
@@ -13,7 +13,7 @@ function Game() {
 Game.prototype.newGame = function() {
   this.reset()
   this.draw()
-  this.start(60)
+  this.start(90)
 }
 
 //Function that starts the timer
@@ -90,6 +90,7 @@ Game.prototype.reset = function() {
   clearInterval(this.interval)
 }
 
+//Function that draws the countdown div
 Game.prototype.drawCountdown = function(state) {
   $('#control').empty()
   var controlDiv
@@ -166,9 +167,6 @@ Game.prototype.lockPipes = function() {
 }
 
 
-
-
-
 //Function that sets the listeners in every pipe
 Game.prototype.setListeners = function() {
   var that = this;
@@ -178,14 +176,13 @@ Game.prototype.setListeners = function() {
   }
 }
 
-
+//¯\_(ツ)_/¯
 Game.prototype.cheat = function() {
 
 }
 
 
 //Sounds
-
 //Function that plays the rotate sound
 Game.prototype.rotateSound = function() {
   var rotateAudio = new Audio('sounds/rotate.mp3')
@@ -199,7 +196,7 @@ Game.prototype.winSound = function() {
   winAudio1.play()
   setTimeout(function() {
     winAudio2.play()
-  }, 1500)  
+  }, 1500)
 }
 
 Game.prototype.loseSound = function() {
