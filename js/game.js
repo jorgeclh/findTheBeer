@@ -1,8 +1,8 @@
 function Game() {
   this.startPosition = [0, 0]
-  this.endPosition = [4, 5]
-  this.totalTime = 60
-  this.time = 60
+  this.endPosition = [5, 9]
+  this.totalTime = 90
+  this.time = 90
   this.interval
   this.openPath = false
   this.cheat = false
@@ -13,7 +13,7 @@ function Game() {
 Game.prototype.newGame = function() {
   this.reset()
   this.draw()
-  this.start(60)
+  this.start(90)
 }
 
 //Function that starts the timer
